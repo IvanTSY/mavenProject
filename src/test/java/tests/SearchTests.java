@@ -25,7 +25,7 @@ public class SearchTests extends CoreTestCase
         SearchPageObject.initSearchInput();  //открытие поиска википедии
         SearchPageObject.typeSearchLine("Java"); //ввод текста в строку поиска
         SearchPageObject.clickCancelSearch();   // клик по кнопке Х ЗАКРЫТИЕ
-        SearchPageObject.clickCancelSearch();   // клик по кнопке Х ЗАКРЫТИЕ
+
         SearchPageObject.waitForCancelButtonToAppear();  // проверяем наличие кнопки Х ЗАКРЫТИЕ
         SearchPageObject.waitForCancelButtonToDisappear();   // проверяем отсутствие кнопки Х ЗАКРЫТИЕ
     }

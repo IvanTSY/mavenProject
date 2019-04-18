@@ -12,9 +12,8 @@ import org.junit.Test;
 
 public class Lesson8Ex17 extends CoreTestCase {
     private static final String name_of_folder = "Learning programming";
-    private static final String
-            login = "IvanTSY",
-            password = "02615948";
+    private static final String login = "Tsypyshev";
+    private static final String password = "qweQWE123";
 
     @Test
     public void testSaveTwoArticlesToMyList(){
@@ -31,22 +30,23 @@ public class Lesson8Ex17 extends CoreTestCase {
 
         if (Platform.getInstance().isAndroid()) {
             ArticlePageObject.addArticleToMyList(name_of_folder);
-        } else {
+        } else if(Platform.getInstance().isIOS()) {
             ArticlePageObject.addArticlesToMySaved();
-        }
-        if (Platform.getInstance().isMW()) {
+        }else if (Platform.getInstance().isMW()) {
             AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
-            Auth.clickAuthButton();
-            Auth.enterLoginData(login, password);
-            Auth.submitForm();
-
-            ArticlePageObject.waitForTitleElement();
-
-            assertEquals("WE are not on the same after login",
-                    article_title,
-                    ArticlePageObject.getArticleTitle()
-            );
             ArticlePageObject.addArticlesToMySaved();
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login,password);
+            Auth.submitForm();
+            ArticlePageObject.addArticlesToMySaved();
+
+//            ArticlePageObject.waitForTitleElement();
+//
+//            assertEquals("WE are not on the same after login",
+//                    article_title,
+//                    ArticlePageObject.getArticleTitle()
+//            );
+//            ArticlePageObject.addArticlesToMySaved();
         }
 
         ArticlePageObject.closeArticle();
@@ -55,9 +55,11 @@ public class Lesson8Ex17 extends CoreTestCase {
         SearchPageObject.typeSearchLine("php");
         SearchPageObject.clickByArticleWithSubString("cripting language");
 
-        if(Platform.getInstance().isAndroid()){
-            ArticlePageObject.addTwoArticleToMyList(name_of_folder);
-        } else {
+        if (Platform.getInstance().isAndroid()) {
+            ArticlePageObject.addArticleToMyList(name_of_folder);
+        } else if(Platform.getInstance().isIOS()) {
+            ArticlePageObject.addArticlesToMySaved();
+        }else if (Platform.getInstance().isMW()) {
             ArticlePageObject.addArticlesToMySaved();
         }
 

@@ -2,10 +2,7 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.Platform;
-import lib.ui.ArticlePageObject;
-import lib.ui.MyListPageObject;
-import lib.ui.NavigationUI;
-import lib.ui.SearchPageObject;
+import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.MyListPageObjectFactory;
 import lib.ui.factories.NavigationUIFactory;
@@ -19,6 +16,9 @@ public class Lesson7Ex11 extends CoreTestCase
     @Test
     public void testSaveTwoArticlesToMyList()
     {
+        String
+                login = "IvanTSY",
+                password = "02615948";
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         SearchPageObject.initSearchInput();
@@ -30,9 +30,23 @@ public class Lesson7Ex11 extends CoreTestCase
 
         String article_title = ArticlePageObject.getArticleTitle();
 
-        if(Platform.getInstance().isAndroid()){
+        if (Platform.getInstance().isAndroid()) {
             ArticlePageObject.addArticleToMyList(name_of_folder);
-        } else {
+        } else if(Platform.getInstance().isIOS()) {
+            ArticlePageObject.addArticlesToMySaved();
+        }else if (Platform.getInstance().isMW()) {
+            ArticlePageObject.addArticlesToMySaved();
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login,password);
+            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals("WE are not on the same after login",
+                    "Log in",
+                    ArticlePageObject.getArticleTitle()
+            );
             ArticlePageObject.addArticlesToMySaved();
         }
 //==============================================================================
@@ -48,19 +62,19 @@ public class Lesson7Ex11 extends CoreTestCase
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Appium");
-        SearchPageObject.clickByArticleWithSubString("ppium");
+        SearchPageObject.clickByArticleWithSubString("oman Politician");
 
         if(Platform.getInstance().isAndroid()){
             ArticlePageObject.addTwoArticleToMyList(name_of_folder);
-        } else {
+        } else if(Platform.getInstance().isIOS()){
             ArticlePageObject.addArticlesToMySaved();
-        }
+        }else if(Platform.getInstance().isAndroid()){
+        MyListPageObject.openFolderByName(name_of_folder);
+    }
 
 
 
-        if(Platform.getInstance().isAndroid()){
-            MyListPageObject.openFolderByName(name_of_folder);
-        }
+
 
         ArticlePageObject.closeArticle();
 

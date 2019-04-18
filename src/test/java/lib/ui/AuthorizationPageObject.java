@@ -17,19 +17,19 @@ public class AuthorizationPageObject extends MainPageObject
 
     public void clickAuthButton() // метод который кликает по кнопке логин
     {
-        this.waitForElementPresent(LOGIN_BUTTON, "Cannot find auth button", 5);
-        this.waitForElementAndClick(LOGIN_BUTTON, "Cannot find and click auth button", 5);
+        this.waitForElementPresent(LOGIN_BUTTON, "Cannot find auth button", 10);
+        this.waitForElementAndClick(LOGIN_BUTTON, "Cannot find and click auth button", 10);
     }
 
     public void enterLoginData(String login, String password)  // метод ввода данных для авторизации
     {
-        this.waitForElementAndSendKeys(LOGIN_INPUT, login, "Cannot find and put a login to the login input", 5);
-        this.waitForElementAndSendKeys(PASSWORD_INPUT, password, "Cannot find and put a password to the password input", 5);
+        this.waitForElementAndSendKeys(LOGIN_INPUT, login, "Cannot find and put a login to the login input", 10);
+        this.waitForElementAndSendKeys(PASSWORD_INPUT, password, "Cannot find and put a password to the password input", 10);
     }
 
     public void submitForm() // метод клик по кнопке сабмит
     {
-        this.waitForElementAndClick(SUBMIT_BUTTON, "Cannot find and click submit auth button", 5);
+        this.waitForElementAndClick(SUBMIT_BUTTON, "Cannot find and click submit auth button", 10);
     }
 
 }
