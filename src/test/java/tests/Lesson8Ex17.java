@@ -40,13 +40,13 @@ public class Lesson8Ex17 extends CoreTestCase {
             Auth.submitForm();
             ArticlePageObject.addArticlesToMySaved();
 
-//            ArticlePageObject.waitForTitleElement();
-//
-//            assertEquals("WE are not on the same after login",
-//                    article_title,
-//                    ArticlePageObject.getArticleTitle()
-//            );
-//            ArticlePageObject.addArticlesToMySaved();
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals("WE are not on the same after login",
+                    article_title,
+                    ArticlePageObject.getArticleTitle()
+            );
+            ArticlePageObject.addArticlesToMySaved();
         }
 
         ArticlePageObject.closeArticle();
