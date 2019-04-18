@@ -10,7 +10,7 @@ import lib.ui.factories.NavigationUIFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
-public class Lesson8Ex14 extends CoreTestCase {
+public class Lesson8Ex17 extends CoreTestCase {
     private static final String name_of_folder = "Learning programming";
     private static final String
             login = "IvanTSY",
